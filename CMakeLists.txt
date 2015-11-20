@@ -12,11 +12,23 @@ add_service_Files(
   FILES FilterJointTrajectory.srv FilterJointTrajectoryWithConstraints.srv GetCollisionObjects.srv GetJointTrajectoryValidity.srv GetMotionPlan.srv GetPlanningScene.srv GetRobotState.srv GetRobotTrajectoryValidity.srv GetStateValidity.srv SetPlanningSceneDiff.srv
   DIRECTORY srv)
 
+add_action_files(
+  FILES
+  MakeStaticCollisionMap.action
+  MoveArm.action
+  SyncPlanningScene.action
+  DIRECTORY action)
+
 generate_messages(
   DEPENDENCIES std_msgs actionlib_msgs sensor_msgs geometry_msgs trajectory_msgs
 )
 
 
 catkin_package(
-    CATKIN_DEPENDS std_msgs actionlib_msgs sensor_msgs geometry_msgs trajectory_msgs tf message_runtime
+  INCLUDE_DIRS include
+  CATKIN_DEPENDS std_msgs actionlib_msgs sensor_msgs geometry_msgs trajectory_msgs tf message_runtime
 )
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  PATTERN ".svn" EXCLUDE)
