@@ -25,8 +25,9 @@ generate_messages(
 
 
 catkin_package(
-  INCLUDE_DIRS include
   CATKIN_DEPENDS std_msgs actionlib_msgs sensor_msgs geometry_msgs trajectory_msgs tf message_runtime
+  INCLUDE_DIRS include
+  #LIBRARIES ${PROJECT_NAME}
 )
 
 install(DIRECTORY include/${PROJECT_NAME}/
